@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --main-clr: red;
+}
+
+
+*,
+::before,
+::after {
+  @apply duration-[100ms] ease-out
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--main-clr);
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body h1,h2, h3,h4,h5,h6 {
+  @apply capitalize font-bold;
+}
