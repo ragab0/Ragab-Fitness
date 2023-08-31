@@ -2,32 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
-  --main-clr: red;
-}
+  --clr-main: rgb(255, 0, 38); /* text, btns */
+  --clr-main-70: #FFF1F4; /* UI-section, footer*/
+  --clr-main-50: #FFE0E5; /* Back Text */
+  --clr-main-30: #FFF9FB; /* Main background color*/
 
+  --clr-pink: #FF9AA9; /* btns */
+  --clr-yellow: #FFCB55; /* btns */
+  --clr-yellow-lighted: #FFF4DB; /* btns */
+  --clr-gray: #E4E5EA; /* btns */
+  --clr-gray-darked: #B4B4B5; /* btns */
+}
 
 *,
 ::before,
 ::after {
-  @apply duration-[100ms] ease-out
+  @apply transition-all;
 }
 
 *::-webkit-scrollbar {
-  width: 10px;
-  background-color: transparent;
+  @apply w-2 bg-mainColor50;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--main-clr);
+  @apply rounded-full bg-mainColor hover:bg-red-400 active:bg-red-700;
 }
 
+::selection {
+  @apply !bg-mainColor !text-white
+}
 
 html {
   scroll-behavior: smooth;
 }
 
-body h1,h2, h3,h4,h5,h6 {
-  @apply capitalize font-bold;
+body {
+  @apply bg-mainColor30 font-serif;
 }
+
+body h1,
+body h2,
+body h3,
+body h4 {
+  @apply capitalize font-bold font-sans;
+}
+
+body h1 {
+  @apply  text-xl text-mainColor;
+}
+
+body h2 {
+  @apply  text-2xl lg:text-4xl !leading-[1.5];
+}
+
+.container {
+  @apply mx-auto px-5 max-w-7xl;
+}
+
+.btn-main {
+  @apply py-3 px-5 bg-mainColor text-white rounded-md lg:text-2xl hover:bg-red-700 font-serif;
+}
+
+
+/* Hero section */
+
+section.hero-section::after {
+  @apply absolute bottom-0 left-0 translate-y-1/2 z-[-1] text-[200px] text-mainColor50 lg:content-['Exercise'] font-serif;
+}
+
+
+/* Results section */
+/* section .results-items li {
+  @apply bg-clrPink;
+}
+section .results-items li:nth-of-type(even) {
+  @apply bg-clrYellow;
+
+}
+section .pagination {
+
+} */

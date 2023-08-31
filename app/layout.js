@@ -1,9 +1,10 @@
+import Footer from '@/components/Footer';
 import './globals.css';
 
 
 export const metadata = {
-  title: "Ragab Eid - Personal Portfolio",
-  description: "Ragab Eid - Personal Portfolio. Show Ragab's Resume, Skills, Projects and mailing him",
+  title: "Ragab Fitness - The Clup of body !",
+  description: "Welcome to Ragab fitness - The clup of body building !",
   icon: "/",
 }
 
@@ -11,10 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${bitter.variable}`}>
-        <div className='relative'>
-          {children}
+      <body>
+        <div className='min-h-screen'>
+          {
+            children
+          }
         </div>
+        <Footer />
       </body>
     </html>
   )
