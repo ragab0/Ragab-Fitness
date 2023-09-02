@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Pagination from "@/components/Pagination";
 import Result from "@/components/Result";
 import Search from "@/components/Search";
 import Types from "@/components/Types";
