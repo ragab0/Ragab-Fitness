@@ -1,38 +1,49 @@
-"use client";
-import { useGlobalContext } from "@/utils/Context";
-import Pagination from "./Pagination";
+"use client"
 import Loading from "./Loading";
-import Card from "./Card";
+import NoExercises from "./NoExercises";
+import Card from "./Exercise";
+import { useGlobalContext } from "@/utils/Context";
+import { useEffect } from "react";
+import { currentExercisesSetter } from "@/utils/Reducer";
 
 
-export default function Result({pagination=true}) {
-  const {appState: {exercises, currentExercises, currentPagination, currentType}} = useGlobalContext();
-  const current = pagination ? currentPagination : currentExercises
+export default function Result({exers}) {
 
-  if (!exercises.length) {
-    return (
-      <div className=" flex justify-center my-[100px] text-red-400">
-        <Loading />
-      </div>
-    )
-  }
+  const {
+    appDispatch,
+    appState: {
+      currentPage,
+      currentType,
+      currentSearch,
+      currentExercises,
+      currentSearchInputvalue,
+    }
+  } = useGlobalContext();
 
-  if (!current.length) {
-    return (
-      <section>
-        <h2 className="text-center mb-8">There is no data show</h2>
-      </section>
-    )
-  }
+  useEffect(function() {
+    appDispatch(currentExercisesSetter(exers));
+  }, [])
 
+  useEffect(function() {
+    const newExers = exers.filter(e => e.name.includes(currentSearchInputvalue)).filter(e => currentType === "all" || e.bodyPart === currentType);
+    appDispatch(currentExercisesSetter(newExers));
+  }, [currentType, currentSearchInputvalue])
+
+
+  if (!exers.length) return <Loading />
+  else if (!currentExercises?.length) return <NoExercises />
+  
 
   return (
-    <section>
-      <h2 className="text-center mb-8">{currentType} Results</h2>
+    <section className="my-[150px]">
+      <h2 className="mb-8 text-center">
+        <span className="text-mainColor">{currentType}</span> Results
+        {currentSearchInputvalue 
+        && <span className="block">of <span className="text-mainColor">{currentSearchInputvalue}</span></span>}
+      </h2>
       <div className="results grid md:grid-cols-2 lg:grid-cols-3 gap-[50px]">
-        {current.map((obj, i) => <Card key={i} obj={obj} />)}
+        {currentExercises.slice((currentPage-1)*10, currentPage*10).map((obj, i) => <Card key={i} obj={obj} />)}
       </div>
-      {pagination && <Pagination />}
     </section>
   )
 }

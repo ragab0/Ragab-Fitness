@@ -1,10 +1,7 @@
-"use client";
-import thunk from "redux-thunk";
 import Reducer, { initialState } from "./Reducer"
 import { createContext, useReducer, useContext } from "react";
 
-
-export const AppContext = createContext();
+const AppContext = createContext();
 
 
 export default function AppProvider({children}) {

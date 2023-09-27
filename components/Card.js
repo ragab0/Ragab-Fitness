@@ -1,19 +1,14 @@
-import Link from "next/link";
-import { Suspense } from "react";
+import CardPlan from "./CardPlan";
 
-export default function Card({obj: {gifUrl, name, id, target, bodyPart}}) {
+export default function Card() {
   return (
-    <figure className="hover:scale-110 border-t-4 border-mainColor bg-white hover:">
-      <Link href={`/exercise/${id}`} className="h-[300px] w-full flex items-center justify-center">
-        <Suspense fallback={<h1>Loading</h1>}>
-          <img alt={name} src={gifUrl} className=" w-full h-full" />
-        </Suspense>
-      </Link>
-      <figcaption className="p-5">
-        <button className="text-xs my-2 p-2 rounded-2xl hover:opacity-80 font-medium !font-sans text-gray-100 bg-[#ffa9a9] me-2">{bodyPart}</button>
-        <button className="text-xs my-2 p-2 rounded-2xl hover:opacity-80 font-medium !font-sans text-gray-100 bg-[#fcc757]">{target}</button>
-        <h4 className="text-xl">{name}</h4>
-      </figcaption>
-    </figure>
+    <aside className="fixed top-0 right-0 z-10 bg-mainColor50 p-4 w-1/4 h-full">
+      <header>
+        <h2 className="mb-8 py-4 border-b-4 border-current text-center font-serif cursor-default">
+          <span className="text-mainColor">My</span> Plan
+        </h2>
+      </header>
+      <CardPlan /> 
+    </aside>
   )
 }

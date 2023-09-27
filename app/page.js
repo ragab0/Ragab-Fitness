@@ -1,20 +1,18 @@
 import Hero from "@/components/Hero";
-import Pagination from "@/components/Pagination";
-import Result from "@/components/Result";
-import Search from "@/components/Search";
-import Types from "@/components/Types";
-import AppProvider from "@/utils/Context";
+import HomeClientParts from "./pageClient";
+import { fetchExercises } from "@/utils/FetchExercises";
+import { fetchExercisesTypes } from "@/utils/FetchExercisesTypes";
 
 
-export default function Home() {
+export default async function Home() {
+  // Fetching on server, and then passing to client comps;
+  const exers = await fetchExercises();
+  const types = await fetchExercisesTypes()
+
   return (
     <main className="container">
       <Hero />
-      <AppProvider>
-        <Search />
-        <Types />
-        <Result pagination={true} />
-      </AppProvider>
+      <HomeClientParts exers={exers} types={types} />
     </main>
   )
 }

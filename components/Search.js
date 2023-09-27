@@ -1,28 +1,23 @@
 "use client";
 import { useGlobalContext } from "@/utils/Context";
-import { fetchExercises } from "@/utils/Fetches";
-import { useEffect } from "react";
-
+import { searchSubmitSetter, searchValueSetter } from "@/utils/Reducer";
 
 
 export default function Search() {
-  const { appState: {searchInputValue}, appDispatch } = useGlobalContext();
-
+  const { 
+    appDispatch, 
+    appState: {
+      searchInputValue
+    }, 
+  } = useGlobalContext();
 
   function inputValueHandler(e) {
-    const { value } = e.target;
-    appDispatch({type: "setSearchInputValue", payload: value});
+    appDispatch(searchValueSetter(e.target.value));
   }
+
   function searchSubmitHandler(e) {
-    appDispatch({type: "handlingSearchSubmiting", payload: searchInputValue});
+    appDispatch(searchSubmitSetter());
   }
-
-
-  useEffect(function() {
-    // The initial fetch.. PUT here as the the empty search mean all exercises :);
-    fetchExercises(appDispatch);
-  }, [])
-
 
   return (
     <section id="exercises">

@@ -1,41 +1,10 @@
-"use client";
 import Image from "next/image";
-import Icon1 from "@/assets/icons/body-part.png"
-import Icon2 from "@/assets/icons/target.png"
-import Icon3 from "@/assets/icons/equipment.png"
-import Type from "@/assets/icons/gym.png";
-import { useEffect } from "react";
-import { fetchExercises, fetchSingle } from "@/utils/Fetches";
-import { useParams } from "next/navigation"
-import { useGlobalContext } from "@/utils/Context";
-// import { fetchSingleVideos } from "@/utils/youtube_fetch";
-
-const data = [
-  {
-    name: "Hedooa",
-    img: Icon1,
-  },
-  {
-    name: "rashaqa",
-    img: Icon2,
-  },
-  {
-    name: "Strong man",
-    img: Icon3
-  },
-];
+import { parts } from "@/assets/data/data";
 
 
-export default function ExHero() {
-  const { appState: {single: {bodyPart, equipment, gifUrl, name, target, }, isFailed}, appDispatch } = useGlobalContext();
-  const { id } = useParams();
-  useEffect(function() {
-    (async function() {
-      const exercise = await fetchSingle(appDispatch, id);
-      await fetchExercises(appDispatch)
-      // await fetchSingleVideos(appDispatch, exercise.name);
-    })()
-  }, [id])
+export default async function ExHero({ exer }) {
+
+  const { bodyPart, equipment, gifUrl, name, target } = exer;
 
 
   return (
@@ -52,7 +21,7 @@ export default function ExHero() {
         </p>
         <ul className="flex flex-col gap-8">
           {
-            data.map(({name, img}, i) => (
+            parts.map(({name, img}, i) => (
               <li key={i} className="flex items-center gap-4">
                 <div className=" rounded-full bg-clrYellowLighted hover:bg-yellow-600/20 overflow-hidden p-4 w-[82px]">
                   <Image alt="img" className="img" src={img} width="100%" />

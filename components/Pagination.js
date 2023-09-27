@@ -1,33 +1,34 @@
 "use client";
 import { useGlobalContext } from '@/utils/Context';
-import React, { useState, useEffect } from 'react'
+import { currentPageSetter } from '@/utils/Reducer';
+
 
 export default function Pagination() {
-  const { appState: {currentExercises, currentPage, paginationMaxPerPage}, appDispatch } = useGlobalContext()
-  const maxPages = Math.ceil(currentExercises.length / paginationMaxPerPage);
-
+  const { 
+    appDispatch,
+    appState: {
+      currentPage,
+      currentExercises
+    },  
+  } = useGlobalContext()
+  
+  const maxPages = Math.ceil(currentExercises.length / 10);
 
   function prevHandler(e) {
     if (currentPage > 1) {
-      appDispatch({type: "setCurrentPage", payload: currentPage-1});
+      appDispatch(currentPageSetter(currentPage-1));
     }
   }
 
   function nextHandler(e) {
     if (currentPage < maxPages) {
-      appDispatch({type: "setCurrentPage", payload: currentPage+1});
+      appDispatch(currentPageSetter(currentPage+1));
     }
   }
 
   function buttonHandler(e) {
-      appDispatch({type: "setCurrentPage", payload: +e.target.value});
+      appDispatch(currentPageSetter(+e.target.value));
   }
-
-
-  // useEffect(function() {
-  //   appDispatch({type: "setCurrentPagination", payload: currentExercises.slice((currentPage-1)*paginationMaxPerPage, (currentPage)*paginationMaxPerPage)})
-  // }, [currentPage])
-  
 
 
   return (

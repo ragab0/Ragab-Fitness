@@ -1,17 +1,7 @@
 import Image from "next/image";
 import Logo from "@/assets/imgs/Logo.png";
 import Link from "next/link";
-
-
-const links = [
-  {
-    name: "home",
-    to: "/",
-  },{
-    name: "exercises",
-    to: "#exercises",
-  },
-]
+import { links } from "@/assets/data/data";
 
 
 export default function Header() {

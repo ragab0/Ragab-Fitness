@@ -1,131 +1,215 @@
+const SET_CURRENT_EXERCISES="SET_CURRENT_EXERCISES";
+const SET_CURRENT_TYPE="SET_CURRENT_TYPE";
+const SET_SEARCH_VALUE="SET_SEARCH_VALUE";
+const SET_SEARCH_SUBMITE="SET_SEARCH_SUBMITE";
+const SET_CURRENT_PAGE="SET_CURRENT_PAGE";
+
 export const initialState = {
-  exercises: [], 
-  exercisesTypes: [],
   currentExercises: [],
-  currentExercisesCached: [],
-  
-
-  currentPagination: [],
-  currentPage: 1,
   currentType: "all",
-  paginationMaxPerPage: 10,
-
-  single: {},
-  singleVideos: [],
-  singleSimilarTargets: 6,
-  singleSimilarEquipment: 6,
-
+  currentPage: 1,
   searchInputValue: "",
-  isFailed: false,
-  failedMsg: null,
+  currentSearchInputvalue: "",
+
+  cardList: [],
 }
 
 
-export default function Reducer(state, action) {
+export function currentExercisesSetter(list) {
+  return {
+    type: SET_CURRENT_EXERCISES,
+    payload: list
+  }
+}
+
+export function currentTypeSetter(value) {
+  return {
+    type: SET_CURRENT_TYPE, 
+    payload: value
+  }
+}
+
+export function searchValueSetter(value) {
+  return {
+    type: SET_SEARCH_VALUE, 
+    payload: value
+  }
+}
+
+export function searchSubmitSetter() {
+  return {
+    type: SET_SEARCH_SUBMITE, 
+  }
+}
+
+export function currentPageSetter(value) {
+  return {
+    type: SET_CURRENT_PAGE, 
+    payload: value
+  }
+}
+
+
+export default function Reducer(state=initialState, action) {
+  console.log("prev state:", state);
   switch (action.type) {
-    // 01 Success_1;
-    // Initial fetch;
-    case "fetchExercises":
-      console.log("Successed, fetchExercises");
+    case SET_CURRENT_EXERCISES:
       return {
         ...state,
-        isFailed: null,
-        exercises: action.payload,
-        exercisesTypes: ["all", ...new Set(action.payload.map(obj => obj.bodyPart))],
-
         currentExercises: action.payload,
-        currentExercisesCached: action.payload,
-        currentPagination: action.payload.slice(0,state.paginationMaxPerPage),
-        types: action.payload[0]
       }
 
-    case "fetchSingle":
-      console.log("FetchingSingle");
+    case SET_CURRENT_TYPE:
       return {
         ...state,
-        single: action.payload,
-      }
-
-    case "fetchSingleVideos":
-      console.log("Fetch success, fetchSingleVideos", action.payload);
-      return {
-        ...state,
-        isFailed: null,
-        singleVideos: action.payload,
-
-      }
-    
-    case "fetchFailed":
-      console.log("fechFailed", action.payload);
-      return {
-        ...state,
-        isFailed: true,
-        failedMsg: action.payload
-      }
-
-
-
-    case "handlingSearchSubmiting": {
-      console.log("handlingSearchSubmiting payload:", action.payload);
-      const filtered = state.exercises.filter(obj => obj.name.toLocaleLowerCase().includes(action.payload.toLocaleLowerCase()))
-      return {
-        ...state,
-        currentExercises: filtered,
-        currentExercisesCached: filtered,
-        currentType: "all",
-        currentPagination: filtered.slice(0, 10),
+        currentType: action.payload,
         currentPage: 1,
       }
+
+    case SET_SEARCH_SUBMITE: {
+      return {
+        ...state,
+        currentType: "all",
+        currentPage: 1,
+        currentSearchInputvalue: state.searchInputValue,
+      }
     }
-    case "setSearchInputValue":
+
+    case SET_SEARCH_VALUE:
       return {
         ...state,
         searchInputValue: action.payload
       }
-    case "setCurrentType":
-      console.log("settingCurrentType payload:", action.payload, state.currentExercisesCached);      
-      const filtered = action.payload === "all" ? state.currentExercisesCached : state.currentExercisesCached.filter(obj => obj.bodyPart.toLocaleLowerCase() === action.payload.toLocaleLowerCase())
-      console.log(filtered);
+
+    case SET_CURRENT_PAGE:
       return {
         ...state,
-        currentType: action.payload,
-        currentExercises: filtered,
-        currentPagination: filtered.slice(0,state.paginationMaxPerPage),
-        currentPage: 1,
+        currentPage: action.payload,
       }
 
 
-    case "setCurrentPagination":
-      console.log("settingCurrentPagination");
-      return {
-        ...state,
-        currentPagination: action.payload,
-      }
-    case "setCurrentPage":
-      console.log("setCurrentPage");
-      const c = action.payload
-      return {
-        ...state,
-        currentPage: c,
-        currentPagination: state.currentExercises.slice((c-1)*state.paginationMaxPerPage, (c)*state.paginationMaxPerPage),
-      }
+    // /** Card reducer */
+    // case CART_LIST_SETTER:
+    //   return {
+    //     ...state,
+    //     cartList: action.payload
+    //   }
+
+    // case CART_ADD_TO:
+    //   let newCartList;
+    //   if (state.cartList.find(i => i.id == action.payload.id && i.color === action.payload.color)) {
+    //     newCartList = state.cartList.map(i => {
+    //       if (state.cartList.find(i => i.id == action.payload.id && i.color === action.payload.color)) {
+    //         i.count += action.payload.count;
+    //       }
+    //       return i
+    //     })
+    //   } else {
+    //     newCartList = [action.payload, ...state.cartList];
+    //   }
+    //   return {
+    //     ...state,
+    //     cartList: newCartList
+    //   };
 
 
+    // case CART_CLEAR:
+    //   return {
+    //     ...state,
+    //     cartList: []
+    //   }
 
-      case "setSingleSimilarTargets":
-        console.log("Setting more lclick");
-        return {
-          ...state,
-          singleSimilarTargets: state.singleSimilarTargets + 6 
-        }
-      case "setSingleSimilarEquipment":
-        console.log("Setting more lclick");
-        return {
-          ...state,
-          singleSimilarEquipment: state.singleSimilarEquipment + 6 
-        }
+
+    // case CART_ROOM_SELL:
+    //   // Run before cloning, saving some unneeded operation :DD;
+    //   if (state.cartList[action.payload].count  < 2) {
+    //     return state
+    //   }
+        
+    //   // Deep clone doesn't work (structuredClone) - Since V17;
+    //   let newCartRoomSellList = state.cartList.map(i => ({...i}));
+    //   newCartRoomSellList[action.payload].count -= 1
+    //   return {
+    //     ...state,
+    //     cartList: newCartRoomSellList
+    //   }
+
+    // case CART_ROOM_ORDER:
+    //   // Deep clone doesn't work (structuredClone) - Since V17;
+    //   let newCartRoomOrderList = state.cartList.map(i => ({...i}));
+    //   newCartRoomOrderList[action.payload].count += 1
+    //   return {
+    //     ...state,
+    //     cartList: newCartRoomOrderList
+    //   }
+
+    // case CART_ROOM_REMOVE:
+    //   return {
+    //     ...state,
+    //     cartList: state.cartList.filter((item, i) => item.id != action.payload)
+    //   }
+
 
     default:
       return state;
   }
 }
+
+
+
+// function cartListSetter(list) {
+//   return {
+//     type: CART_LIST_SETTER,
+//     payload: list,
+//   }
+// }
+
+
+// function addToCartSetter(item) {
+//   return {
+//     type: CART_ADD_TO,
+//     payload: item,
+//   }
+// }
+
+
+// function clearCartSetter() {
+//   return {
+//     type: CART_CLEAR,
+//   }
+// }
+
+
+// // Index is great in find and search than id which takes O(n);
+// function orderRoomCartSetter(index) {
+//   return {
+//     type: CART_ROOM_ORDER,
+//     payload: index,
+//   }
+// }
+
+
+// function sellRommCartSetter(index) {
+//   return {
+//     type: CART_ROOM_SELL,
+//     payload: index,
+//   }
+// }
+
+
+// function removeRoomCartSetter(id) {
+//   return {
+//     type: CART_ROOM_REMOVE,
+//     payload: id,
+//   }
+// }
+
+
+// export const cartActions = {
+//   cartListSetter,
+//   addToCartSetter,
+//   clearCartSetter,
+//   orderRoomCartSetter,
+//   sellRommCartSetter,
+//   removeRoomCartSetter,
+// }
