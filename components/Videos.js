@@ -4,7 +4,6 @@ import Loading from "./Loading";
 
 
 export default function Videos({videos}) {
-
   if (!videos?.length) {
     return <Loading />
   }

@@ -5,7 +5,6 @@ import Loading from "./Loading";
 
 
 export default function Similars({exers}) {
-
   const PER_PAGE = 6
   const [page, setPage] = useState(1);
 
@@ -17,6 +16,7 @@ export default function Similars({exers}) {
     setPage(o => o+1);
   }
 
+  
   return (
     <div className="similars grid md:grid-cols-2 lg:grid-cols-3 gap-[50px]">
       {exers.slice(0, page * PER_PAGE).map((obj, i) => <Card key={i} obj={obj} />)}

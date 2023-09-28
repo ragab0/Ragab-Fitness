@@ -4,15 +4,15 @@
 
 :root {
   --clr-main: rgb(255, 0, 38); /* text, btns */
-  --clr-main-70: #FFF1F4; /* UI-section, footer*/
-  --clr-main-50: #FFE0E5; /* Back Text */
-  --clr-main-30: #FFF9FB; /* Main background color*/
+  --clr-main-70: rgb(255, 240, 243); /* UI-section, footer*/
+  --clr-main-50: rgb(255, 224, 229); /* Back Text */
+  --clr-main-30: rgb(255, 249, 251); /* Main background color*/
 
-  --clr-pink: #FF9AA9; /* btns */
-  --clr-yellow: #FFCB55; /* btns */
-  --clr-yellow-lighted: #FFF4DB; /* btns */
-  --clr-gray: #E4E5EA; /* btns */
-  --clr-gray-darked: #B4B4B5; /* btns */
+  --clr-pink: rgb(255, 154, 169); /* btns */
+  --clr-yellow: rgb(255, 203, 85); /* btns */
+  --clr-yellow-lighted: rgb(255, 244, 219); /* btns */
+  --clr-gray: rgb(228, 229, 234); /* btns */
+  --clr-gray-darked: rgb(180, 180, 181); /* btns */
 }
 
 
@@ -68,5 +68,21 @@
   
   .btn-main {
     @apply py-3 px-5 bg-mainColor text-white rounded-md lg:text-2xl hover:bg-red-700 font-serif;
+  }
+
+  .animation-card {
+    animation: card-animate 150ms ease-in 0ms  forwards;
+    transform: translateX(100%)
+  }
+}
+
+
+
+@keyframes card-animate {
+  0% {
+    clip-path: ellipse(1% 1%);
+  } 100% {
+    transform: translateX(0);
+    clip-path: ellipse(100% 100%);
   }
 }

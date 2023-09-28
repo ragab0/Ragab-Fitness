@@ -2,31 +2,28 @@
 import Loading from "./Loading";
 import NoExercises from "./NoExercises";
 import Card from "./Exercise";
-import { useGlobalContext } from "@/utils/Context";
 import { useEffect } from "react";
-import { currentExercisesSetter } from "@/utils/Reducer";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { ExercisesActions } from "@/redux/exercises/ExerciseSlice";
+import { store } from "@/redux/Store";
 
 
-export default function Result({exers}) {
-
+function ResultBody({exers}) {
+  const dispatch = useDispatch();
   const {
-    appDispatch,
-    appState: {
       currentPage,
       currentType,
-      currentSearch,
       currentExercises,
       currentSearchInputvalue,
-    }
-  } = useGlobalContext();
+  } = useSelector(state => state.ExercisesReducer);
 
   useEffect(function() {
-    appDispatch(currentExercisesSetter(exers));
+    dispatch(ExercisesActions.currentExercisesSetter(exers));
   }, [])
 
   useEffect(function() {
     const newExers = exers.filter(e => e.name.includes(currentSearchInputvalue)).filter(e => currentType === "all" || e.bodyPart === currentType);
-    appDispatch(currentExercisesSetter(newExers));
+    dispatch(ExercisesActions.currentExercisesSetter(newExers));
   }, [currentType, currentSearchInputvalue])
 
 
@@ -45,5 +42,14 @@ export default function Result({exers}) {
         {currentExercises.slice((currentPage-1)*10, currentPage*10).map((obj, i) => <Card key={i} obj={obj} />)}
       </div>
     </section>
+  )
+}
+
+
+export default function Result({exers}) {
+  return (
+    <Provider store={store}>
+      <ResultBody exers={exers} />
+    </Provider>
   )
 }

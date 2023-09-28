@@ -1,7 +1,10 @@
 import Hero from "@/components/Hero";
-import HomeClientParts from "./pageClient";
-import { fetchExercises } from "@/utils/FetchExercises";
+import SearchForm from "@/components/SearchForm";
+import Result from "@/components/Result";
+import Types from "@/components/Types";
+import Pagination from "@/components/Pagination";
 import { fetchExercisesTypes } from "@/utils/FetchExercisesTypes";
+import { fetchExercises } from "@/utils/FetchExercises";
 
 
 export default async function Home() {
@@ -12,7 +15,13 @@ export default async function Home() {
   return (
     <main className="container">
       <Hero />
-      <HomeClientParts exers={exers} types={types} />
+      <section id="exercises">
+        <h2 className=" max-w-md text-center mx-auto leading-[1.7] mb-16">awesome exercises you should know</h2>
+        <SearchForm />
+      </section>
+      <Types types={types} />
+      <Result exers={exers} />
+      <Pagination exers={exers} />
     </main>
   )
 }

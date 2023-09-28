@@ -1,28 +1,25 @@
 "use client";
 import { useRef } from "react";
-import { currentTypeSetter } from "@/utils/Reducer";
-import { useGlobalContext } from "@/utils/Context";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { ExercisesActions } from "@/redux/exercises/ExerciseSlice";
 import Image from "next/image";
 import imgs from "@/assets/imgs";
+import { store } from "@/redux/Store";
 
 const { gym, leftArrow, rightArrow } = imgs;
 
 
-export default function Types({types}) {
+function TypesBody({types}) {
   const articlesWaves = useRef(null);
-  const { 
-    appDispatch,
-    appState: {
-      currentType
-    } 
-  } = useGlobalContext();
-
-  function typeHandler(e, v) {
-    appDispatch(currentTypeSetter(v));
-  }
+  const dispatch = useDispatch();
+  const { currentType } = useSelector(state => state.ExercisesReducer)
 
   function arrowHandler(moveBy) {
     articlesWaves.current.scrollBy(moveBy, 0);
+  }
+
+  function typeHandler(e, v) {
+    dispatch(ExercisesActions.currentTypeSetter(v));
   }
 
 
@@ -53,5 +50,14 @@ export default function Types({types}) {
           onMouseMove={() => arrowHandler(10)}></button>
       </div>
     </section>
+  )
+}
+
+
+export default function Types({types}) {
+  return (
+    <Provider store={store}>
+      <TypesBody types={types} />
+    </Provider>
   )
 }

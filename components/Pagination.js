@@ -1,33 +1,32 @@
 "use client";
-import { useGlobalContext } from '@/utils/Context';
-import { currentPageSetter } from '@/utils/Reducer';
+import { store } from '@/redux/Store';
+import { ExercisesActions } from '@/redux/exercises/ExerciseSlice';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 
 
-export default function Pagination() {
+function PaginationBody() {
+  const dispatch = useDispatch();
   const { 
-    appDispatch,
-    appState: {
       currentPage,
       currentExercises
-    },  
-  } = useGlobalContext()
+  } = useSelector(state => state.ExercisesReducer);
   
   const maxPages = Math.ceil(currentExercises.length / 10);
 
   function prevHandler(e) {
     if (currentPage > 1) {
-      appDispatch(currentPageSetter(currentPage-1));
+      dispatch(ExercisesActions.currentPageSetter(currentPage-1));
     }
   }
 
   function nextHandler(e) {
     if (currentPage < maxPages) {
-      appDispatch(currentPageSetter(currentPage+1));
+      dispatch(ExercisesActions.currentPageSetter(currentPage+1));
     }
   }
 
   function buttonHandler(e) {
-      appDispatch(currentPageSetter(+e.target.value));
+      dispatch(ExercisesActions.currentPageSetter(+e.target.value));
   }
 
 
@@ -47,5 +46,14 @@ export default function Pagination() {
       </ul>
       <button onClick={nextHandler} className={`p-4 py-2 border-2 border-transparent hover:border-clrGray rounded-md ${currentPage >= maxPages ? " text-clrGray" : ""}`} disabled={currentPage >= maxPages} >Nextjs</button>
     </div>
+  )
+}
+
+
+export default function Pagination() {
+  return (
+    <Provider store={store}>
+        <PaginationBody />
+    </Provider>
   )
 }

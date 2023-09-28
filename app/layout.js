@@ -1,11 +1,11 @@
 import Footer from '@/components/Footer';
-import './globals.css';
 import Card from '@/components/Card';
+import './globals.css';
 
 
 export const metadata = {
   title: "Ramy-Fitness",
-  description: "Welcome to Ramy-Fitness - The clup of body building !",
+  description: "Welcome in Ramy-Fitness, The clup of body building !",
   icon: "/",
 }
 
