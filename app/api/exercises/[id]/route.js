@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import structuredApi from "@/constants/structuringApi";
 
-const { searchOnStructure } = structuredApi
+const { searchOnStructure } = structuredApi;
+
 
 export function GET(req, res) {
   const { id } = res.params;
