@@ -3,9 +3,11 @@
 - Welcome to our humble website **Ramy-Fintess** - **The clup of body-building** where you can fined the best excerices, creating your favourite plan. Since you within it, **Your are the coach and You are the student**. The exercises is in your hand waiting for you in order to play them the right way and build a healthy body, good body, ***But not Ramy's body :)*** as i can't promise you with-in our humble website :D;
 
 ![ramy-img](./assets/web.png)
-![ramy-img](./assets/web2.png)
 
 ---
+
+![ramy-img](./assets/web2.png)
+
 ---
 
 ![ramy-img](./assets/imgs/ramy.png)
@@ -36,6 +38,6 @@
 ## AND
 - It is not bad written code
 - I used Redux.js instead of useReducer to avoid the laps of useReducer in Nextjs (On the Server);
-- The exercisesdb API is not mine, its cloned from RapidAPI, not 100% cloned;
+- The exercisesdb API is not mine, its cloned from RapidAPI, 100% cloned;
 <!-- ***That doesn't mean its illegal doing, as i still use the main api** -->
 - *But since it was a challenge, have to be end with* **done!**
