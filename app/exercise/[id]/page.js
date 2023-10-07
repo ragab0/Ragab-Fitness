@@ -1,7 +1,7 @@
 import { fetchExercise } from "@/utils/FetchExercise";
 import { fetchExercises } from "@/utils/FetchExercises";
 import Header from "@/components/Header";
-import ExHero from "@/components/ExHero";
+import ExHero from "@/components/ExerciseHero";
 import Similars from "@/components/Similars";
 import Videos from "@/components/Videos";
 import NotFound from "./not-found";

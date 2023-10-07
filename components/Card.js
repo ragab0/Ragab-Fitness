@@ -4,6 +4,7 @@ import { store } from "@/redux/Store";
 import { CardActions } from "@/redux/card/CardSlice";
 import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 
 function CardBody() {
@@ -54,9 +55,10 @@ function CardBody() {
             before:text-[100px] before:text-end before:pointer-events-none before:z-[-1] before:text-mainColor50 `}
             >
               <Link href={`/exercise/${id}`}>
-                <img alt={name} src={gifUrl} width={100} height={100} 
-                className=" w-[75px] h-[75px] lg:w-[100px] lg:h-[100px] overflow-hidden
-                border-2 border-mainColor50 p-2 rounded-md" />
+                <Image alt={name} src={`/imgs/${gifUrl}`} width={100} height={100} 
+                  className=" w-[75px] h-[75px] lg:w-[100px] lg:h-[100px] overflow-hidden
+                  border-2 border-mainColor50 p-2 rounded-md"
+                />
               </Link>
               <figcaption className="w-full grid grid-rows-[auto_1fr] relative before:">
                 <h4 className="lg:text-xl">{name}</h4>

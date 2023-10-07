@@ -1,13 +1,15 @@
-import Link from "next/link";
 import { Suspense } from "react";
+import Loading from "./Loading";
+import Image from "next/image";
+import Link from "next/link";
 
 
 export default function Exercise({obj: {gifUrl, name, id, target, bodyPart}}) {
   return (
     <figure className="hover:scale-110 border-t-4 border-mainColor bg-white hover:">
       <Link href={`/exercise/${id}`} className="h-[300px] w-full flex items-center justify-center">
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <img alt={name} src={gifUrl} className=" w-full h-full" />
+        <Suspense fallback={<Loading />}>
+          <Image alt={name} src={`/imgs/${gifUrl}`} width={300} height={300} className="w-full h-full" />
         </Suspense>
       </Link>
       <figcaption className="p-5">

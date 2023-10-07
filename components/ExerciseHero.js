@@ -8,7 +8,7 @@ export default async function ExHero({ exer }) {
   return (
     <section className="grid lg:grid-cols-2 gap-10 mb-[250px]">
       <div className=" bg-white flex items-center justify-center min-h-[500px] relative">
-        <img alt="exercise" src={gifUrl} className="w-full h-full" />
+        <Image alt="exercise" src={`/imgs/${gifUrl}`} width={500} height={500} className="w-full h-full" />
         <Favourite exer={exer} />
       </div>
       <div className="p-4 py-16">
@@ -23,7 +23,7 @@ export default async function ExHero({ exer }) {
             parts.map(({name, img}, i) => (
               <li key={i} className="flex items-center gap-4">
                 <div className=" rounded-full bg-clrYellowLighted hover:bg-yellow-600/20 overflow-hidden p-4 w-[82px]">
-                  <Image alt="img" className="img" src={img} width="100%" />
+                  <Image alt="img" className="img" src={img} />
                 </div>
                 <span className="text-xl capitalize">{name}</span>
               </li>
