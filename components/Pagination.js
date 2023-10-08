@@ -34,7 +34,7 @@ function PaginationBody() {
   const viewers = new Set([1, 2, maxPages, maxPages-1, currentPage, currentPage-1, currentPage+1]);
 
   return (
-    <div className="pagination my-[100px] mx-auto pb-4 flex gap-2">
+    <div className="pagination my-[100px] mx-auto pb-4 flex justify-center gap-2">
       <button onClick={prevHandler} disabled={currentPage <= 1}
         className={`p-4 py-2 border-2 border-clrGray rounded-md ${currentPage !==1 ? "hover:bg-mainColor50 hover:border-mainColor50" : ""}
         ${currentPage <= 1 ? " text-clrGray" : ""}`} 

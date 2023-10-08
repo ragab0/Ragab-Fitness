@@ -8,7 +8,7 @@ export default async function ExHero({ exer }) {
   return (
     <section className="grid lg:grid-cols-2 gap-10 mb-[250px]">
       <div className=" bg-white flex items-center justify-center min-h-[500px] relative">
-        <Image alt="exercise" src={`/imgs/${gifUrl}`} width={500} height={500} className="w-full h-full" />
+        <Image alt="exercise" src={gifUrl} width={500} height={500} className="w-full h-full" />
         <Favourite exer={exer} />
       </div>
       <div className="p-4 py-16">
