@@ -1,5 +1,6 @@
 const fullDir = "https://github.com/ragab0/Ramy-Fitness/raw/main/public/imgs/";
 
+
 module.exports = [
   {
     "bodyPart": "waist",
