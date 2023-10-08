@@ -55,7 +55,7 @@ function CardBody() {
             before:text-[100px] before:text-end before:pointer-events-none before:z-[-1] before:text-mainColor50 `}
             >
               <Link href={`/exercise/${id}`}>
-                <Image alt={name} src={gifUrl} width={100} height={100} 
+                <img alt={name} src={gifUrl}
                   className=" w-[75px] h-[75px] lg:w-[100px] lg:h-[100px] overflow-hidden
                   border-2 border-mainColor50 p-2 rounded-md"
                 />

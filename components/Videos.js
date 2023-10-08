@@ -14,7 +14,7 @@ export default function Videos({videos}) {
       videos.map(({thumb, title, from}, i) => (
         <figure className="hover:scale-110">
           <Link href="#">
-            <Image alt="img" src={thumb} width={300} height={150} className="mx-auto" />
+            <img alt="img" src={thumb} className="mx-auto" />
           </Link>
           <figcaption className="my-8">
             <p className="text-xl">{title}</p>

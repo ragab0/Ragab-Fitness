@@ -9,7 +9,7 @@ export default function Exercise({obj: {gifUrl, name, id, target, bodyPart}}) {
     <figure className="hover:scale-110 border-t-4 border-mainColor bg-white hover:">
       <Link href={`/exercise/${id}`} className="h-[300px] w-full flex items-center justify-center">
         <Suspense fallback={<Loading />}>
-          <Image alt={name} src={gifUrl} width={300} height={300} className="w-full h-full" />
+          <img alt={name} src={gifUrl} className="w-full h-full" />
         </Suspense>
       </Link>
       <figcaption className="p-5">
