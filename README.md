@@ -1,6 +1,10 @@
 # Ramy-Fitness
 
-- Welcome to our humble website **Ramy-Fintess** - **The clup of body-building** where you can fined the best excerices, creating your favourite plan. Since you within it, **Your are the coach and You are the student**. The exercises is in your hand waiting for you in order to play them the right way and build a healthy body, good body, ***But not Ramy's body :)*** as i can't promise you with-in our humble website :D;
+Welcome to **Ramy-Fitness** - **The Club of Body-Building** where you can find the best exercises and create your favorite workout plans. Here, **You are both the coach and the student**. The exercises are at your fingertips, waiting for you to perform them correctly and build a healthy body. **But not Ramy's body to be honest xD**
+
+![ramy-img](./assets/imgs/ramy.png)
+
+---
 
 ![ramy-img](./assets/web.png)
 
@@ -8,36 +12,41 @@
 
 ![ramy-img](./assets/web2.png)
 
----
-
-![ramy-img](./assets/imgs/ramy.png)
-
 ## Techs and Tools
 
-- HTML5
-- CSS3
-- JavaScript
-- JSON
-- Redux
-- React
-- Nextjs
-- Tailwindcss
-- Figma
+- **HTML5**
+- **CSS3**
+- **JavaScript**
+- **JSON**
+- **Redux** (pure)
+- **React**
+- **Next.js**
+- **Tailwind CSS**
+- **Figma**
+- **Axios**
+
 <!-- - YoutTube API V3 (Not yet.. waiting getting a key as it isn't able for cloning such RapidAPI :DD; ..); -->
 
 ## Features
-- +1300 Exercise waiting you to play them the right way.
-- +1300 Pages generated Staticaly in dynamic way using the benifit of (SSG) in Nextjs, ensuring fast and efficient loading.
-- Integrated API using the new Nextjs API app routes.
-- Seamless card fancionality, CRUD your own plan as you need.
-- Filtering the exercises with different options such as by Searching or by the Type.
-- Custom pagination that enables you to easily browse through the exercises.
-- Custom cool fetching using axios;
-- Creating an API endpoint in nextjs using the new built-in nextjs API app routes, and making ***any number*** of requests to it using axios;
 
-## AND
-- It is not bad written code
-- I used Redux.js instead of useReducer to avoid the laps of useReducer in Nextjs (On the Server);
-- The exercisesdb API is not mine, its cloned from RapidAPI, 100% cloned;
-<!-- ***That doesn't mean its illegal doing, as i still use the main api** -->
-- *But since it was a challenge, have to be end with* **done!**
+- **Extensive Exercise Library**: Access to **1300+ exercises** designed for various fitness levels.
+- **Static Page Generation**: Over **1300 pages** generated statically using Next.js's Static Site Generation (SSG) for fast and efficient loading.
+- **Integrated API**: Utilizes Next.js API routes for seamless data fetching and management.
+- **Customizable Workout Plans**: Create, Read, Update, and Delete (CRUD) your own workout plans with ease.
+- **Advanced Filtering Options**: Filter exercises by various criteria, including search functionality and exercise type.
+- **User-Friendly Pagination**: Navigate through exercises effortlessly with custom pagination.
+- **Dynamic Video Content**: Access exercise demonstration videos to enhance your workout experience.
+- **Responsive Design**: Built with Tailwind CSS for a modern and responsive user interface.
+
+## File-Based
+
+In lieu of a traditional database, this project employs a **file-based solution** for managing exercise data. This approach allows for quick access and manipulation of data without the need for a full database setup.
+
+### How It Works:
+
+- The exercise data is stored in memory using JavaScript data structures (like `Map` and `Set`), which are initialized once when the server starts. This means that the data is readily available for all API requests without reprocessing.
+- The data is structured for efficient searching and retrieval, making it easy to filter and access exercises based on user preferences.
+
+## Important Note
+
+- The exercise assets (images) are cloned from an API on RapidAPI and are not owned by the project. They are utilized solely for personal use and demonstration purposesm, may allah bless him ^\_^
